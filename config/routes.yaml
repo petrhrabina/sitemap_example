@@ -1,0 +1,7 @@
+blog_show:
+    path: /blog/{slug}
+    controller: App\Blog\Application\Controller\BlogController::show
+
+brand_show:
+    path: /brand/{slug}
+    controller: App\Brand\Application\Controller\BrandController::show

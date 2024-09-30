@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    image: webdevops/php-apache-dev:8.3
+    container_name: symfony_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - symfony
+
+  db:
+    image: mysql:8.0
+    container_name: symfony_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    networks:
+      - symfony
+
+networks:
+  symfony:
+    driver: bridge

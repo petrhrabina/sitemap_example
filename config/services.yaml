@@ -1,0 +1,19 @@
+parameters:
+    sitemap:
+        base_folder_path: '%kernel.project_dir%/public/sitemap'
+        processing_folder_name: '_temp'
+        final_folder_name: 'current'
+        backup_folder_name: '_backup'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+
+    App\Sitemap\Application\Command\SitemapCommand:
+        tags: ['console.command']
